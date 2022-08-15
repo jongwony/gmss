@@ -2,8 +2,10 @@ import Head from "next/head";
 import React from "react";
 import styles from "../styles/Home.module.css";
 import nextPackage from "next/package.json";
+import Schema from "components/mbti/schema";
+import Recommend from "components/mbti/recommend";
 
-export default function Home({}) {
+export default function Home({ }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -17,6 +19,9 @@ export default function Home({}) {
           Welcome to <a href="https://nextjs.org">Next.js!</a> v
           {nextPackage.version}
         </h1>
+
+        <Schema />
+        <Recommend />
 
         <p className={styles.description}>
           Get started by editing{" "}
