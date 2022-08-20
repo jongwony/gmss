@@ -3,9 +3,13 @@ import React, { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
 
 import Selected from "./selected";
-import { postRecommend } from "./request";
+import { postGrouper } from "./request";
 import styles from "../../styles/Home.module.css";
 
+interface MBTI {
+    mbti: string[],
+    synergy: number,
+}
 
 export function Response() {
     const [data, setData] = useState(null)
@@ -20,7 +24,8 @@ export function Response() {
 
         if (mbti.length > 0) {
             setLoading(true)
-            const response = await postRecommend(mbti, personnel)
+            const response = await postGrouper(mbti, personnel)
+            console.log(response)
             setData(response)
             setLoading(false)
         }
@@ -33,8 +38,19 @@ export function Response() {
     function DataRender() {
         return (
             <div>
-                {data.mbti.map((mbti: string) => <Button key={mbti}>{mbti}</Button>)}
-                <p> {data.synergy} </p>
+                {
+                    data.map((mbti: MBTI) => {
+                        return (
+                            <div>
+                                {
+                                    mbti.mbti.map((x: string) => <Button key={x}>{x}</Button>)
+                                }
+                                <p>{mbti.synergy}</p>
+                                <br />
+                            </div>
+                        )
+                    })
+                }
             </div>
         )
     }
@@ -42,7 +58,7 @@ export function Response() {
     if (isLoading) return <p>Loading...</p>
     return (
         <div>
-            <Button onClick={submit}>추천 받기</Button>
+            <Button onClick={submit}>그룹 나누기</Button>
             <hr />
             {
                 !data
@@ -57,10 +73,10 @@ export default function Recommend() {
     return (
         <div>
             <h1 className={styles.title}>
-                MBTI 친구 찾기
+                MBTI 그룹 나누기
             </h1>
             <p className={styles.description}>
-                선택한 MBTI 의 가장 시너지가 높은 친구를 찾아보세요
+                MBTI 의 가장 시너지가 높은 그룹으로 나눠볼게요
             </p>
             <Selected />
             <hr />
