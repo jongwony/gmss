@@ -41,11 +41,11 @@ export function Response() {
                 {
                     data.map((mbti: MBTI) => {
                         return (
-                            <div>
+                            <div key={Math.random().toString()}>
                                 {
-                                    mbti.mbti.map((x: string) => <Button key={x}>{x}</Button>)
+                                    mbti.mbti.map((x: string) => <Button key={Math.random().toString()} color="success" variant="contained" className={styles.mbtiResult}>{x}</Button>)
                                 }
-                                <p>{mbti.synergy}</p>
+                                <small>시너지 지수: {mbti.synergy}</small>
                                 <br />
                             </div>
                         )
@@ -69,14 +69,14 @@ export function Response() {
     )
 }
 
-export default function Recommend() {
+export default function Grouper() {
     return (
         <div>
             <h1 className={styles.title}>
                 MBTI 그룹 나누기
             </h1>
             <p className={styles.description}>
-                MBTI 의 가장 시너지가 높은 그룹으로 나눠볼게요
+                가장 시너지가 높은 MBTI 그룹들로 나눠볼게요
             </p>
             <Selected />
             <hr />

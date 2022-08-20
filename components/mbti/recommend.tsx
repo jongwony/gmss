@@ -32,9 +32,9 @@ export function Response() {
 
     function DataRender() {
         return (
-            <div>
-                {data.mbti.map((mbti: string) => <Button key={mbti}>{mbti}</Button>)}
-                <p> {data.synergy} </p>
+            <div key={Math.random().toString()}>
+                {data.mbti.map((mbti: string) => <Button color="success" variant="contained" key={Math.random().toString()}>{mbti}</Button>)}
+                시너지 지수: {data.synergy}
             </div>
         )
     }
@@ -60,7 +60,7 @@ export default function Recommend() {
                 MBTI 친구 찾기
             </h1>
             <p className={styles.description}>
-                선택한 MBTI 의 가장 시너지가 높은 친구를 찾아보세요
+                선택한 친구를 포함해 가장 시너지가 높은 MBTI를 찾아보세요
             </p>
             <Selected />
             <hr />

@@ -3,8 +3,7 @@ import React from "react";
 import styles from "../styles/Home.module.css";
 import nextPackage from "next/package.json";
 
-import Recommend from "components/mbti/recommend";
-import Grouper from "components/mbti/grouper";
+import Feature from "components/mbti/category";
 
 export default function Home({ }) {
   return (
@@ -16,8 +15,7 @@ export default function Home({ }) {
       </Head>
 
       <main className={styles.main}>
-        {/* <Recommend /> */}
-        <Grouper />
+        <Feature />
       </main>
 
       <footer className={styles.footer}>Next.js v{nextPackage.version}</footer>

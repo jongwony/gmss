@@ -5,6 +5,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import TextField from '@mui/material/TextField';
 
 import { schema } from "./schema";
+import styles from "../../styles/Home.module.css";
 
 interface Selected {
     key: number;
@@ -25,6 +26,29 @@ function mbtiSubtract(privState: Selected[], selected: Selected) {
 
 export default function Selected() {
     const [list, setList] = React.useState([])
+    function SelectedRender() {
+        if (list.length > 0) {
+            return (
+                <div id="mbtiSelected">
+                    {
+                        list.map(selected =>
+                            <Button variant="contained" className={styles.mbtiSelected} key={selected.key} onClick={() => setList(privState => mbtiSubtract(privState, selected))}>{selected.mbti}</Button>
+                        )
+                    }
+                    <br />
+                    <TextField
+                        required
+                        sx={{ input: { color: "white" }, label: { color: "white" } }}
+                        color="primary"
+                        variant="outlined"
+                        id="personnel"
+                        label="몇 명이 필요하세요?"
+                        defaultValue="2"
+                    />
+                </div>
+            )
+        }
+    }
     return (
         <div>
             <ButtonGroup>
@@ -34,22 +58,7 @@ export default function Selected() {
                     )
                 }
             </ButtonGroup>
-            <hr />
-            <div id="mbtiSelected">
-                {
-                    list.map(selected =>
-                        <Button variant="contained" key={selected.key} onClick={() => setList(privState => mbtiSubtract(privState, selected))}>{selected.mbti}</Button>
-                    )
-                }
-            </div>
-            <div>
-                <TextField
-                    required
-                    id="personnel"
-                    label="Required"
-                    defaultValue="1"
-                />
-            </div>
+            <SelectedRender />
         </div>
     )
 }
