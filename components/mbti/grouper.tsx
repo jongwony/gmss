@@ -45,7 +45,9 @@ export function Response() {
                                 {
                                     mbti.mbti.map((x: string) => <Button key={Math.random().toString()} color="success" variant="contained" className={styles.mbtiResult}>{x}</Button>)
                                 }
-                                <small>시너지 지수: {mbti.synergy}</small>
+                                <Button color="secondary" className={styles.mbtiSelected} variant="contained">
+                                    시너지 지수: {mbti.synergy}
+                                </Button>
                                 <br />
                             </div>
                         )

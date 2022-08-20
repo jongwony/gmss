@@ -33,8 +33,10 @@ export function Response() {
     function DataRender() {
         return (
             <div key={Math.random().toString()}>
-                {data.mbti.map((mbti: string) => <Button color="success" variant="contained" key={Math.random().toString()}>{mbti}</Button>)}
-                시너지 지수: {data.synergy}
+                {data.mbti.map((mbti: string) => <Button color="success" className={styles.mbtiSelected} variant="contained" key={Math.random().toString()}>{mbti}</Button>)}
+                <Button color="secondary" className={styles.mbtiSelected} variant="contained">
+                    시너지 지수: {data.synergy}
+                </Button>
             </div>
         )
     }
