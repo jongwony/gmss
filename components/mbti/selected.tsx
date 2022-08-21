@@ -42,8 +42,8 @@ export default function Selected() {
     function SelectedRender() {
         if (list.length > 0) {
             return (
-                <Grid container sx={{ marginTop: 2 }} id="mbtiSelected">
-                    <Grid xs={12} md={9}>
+                <Grid container id="mbtiSelected">
+                    <Grid xs={12} md={9} sx={{ marginTop: 2}}>
                         {
                             list.map(selected =>
                                 <Button variant="contained" key={selected.key} onClick={() => setList(privState => mbtiSubtract(privState, selected))}>{selected.mbti}</Button>
@@ -51,7 +51,7 @@ export default function Selected() {
                         }
 
                     </Grid>
-                    <Grid Offset="auto">
+                    <Grid sx={{ marginTop: 2}} Offset="auto">
                         <TextField
                             required
                             sx={{ input: { color: "whitesmoke" }, label: { color: "whitesmoke" } }}
