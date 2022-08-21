@@ -43,7 +43,7 @@ export default function Selected() {
         if (list.length > 0) {
             return (
                 <Grid container id="mbtiSelected">
-                    <Grid xs={12} md={9} sx={{ marginTop: 2}}>
+                    <Grid xs={12} md={9} sx={{ marginTop: 2 }}>
                         {
                             list.map(selected =>
                                 <Button variant="contained" key={selected.key} onClick={() => setList(privState => mbtiSubtract(privState, selected))}>{selected.mbti}</Button>
@@ -51,9 +51,10 @@ export default function Selected() {
                         }
 
                     </Grid>
-                    <Grid sx={{ marginTop: 2}} Offset="auto">
+                    <Grid sx={{ marginTop: 2 }} Offset="auto">
                         <TextField
                             required
+                            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                             sx={{ input: { color: "whitesmoke" }, label: { color: "whitesmoke" } }}
                             id="personnel"
                             label="몇 명이 필요하세요?"
