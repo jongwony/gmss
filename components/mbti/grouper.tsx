@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import Button from '@mui/material/Button';
+import { Grid } from "@mui/material";
+import { Stack } from "@mui/material";
 
 import Selected from "./selected";
 import { postGrouper } from "./request";
@@ -41,15 +43,14 @@ export function Response() {
                 {
                     data.map((mbti: MBTI) => {
                         return (
-                            <div key={Math.random().toString()}>
+                            <Grid key={Math.random().toString()} sx={{marginTop: 2}}>
                                 {
-                                    mbti.mbti.map((x: string) => <Button key={Math.random().toString()} color="success" variant="contained" className={styles.mbtiResult}>{x}</Button>)
+                                    mbti.mbti.map((x: string) => <Button key={Math.random().toString()} variant="contained" className={styles.mbtiResult}>{x}</Button>)
                                 }
-                                <Button color="secondary" className={styles.mbtiSelected} variant="contained">
+                                <Button color="secondary" variant="contained">
                                     시너지 지수: {mbti.synergy}
                                 </Button>
-                                <br />
-                            </div>
+                            </Grid>
                         )
                     })
                 }
@@ -59,21 +60,20 @@ export function Response() {
 
     if (isLoading) return <p>Loading...</p>
     return (
-        <div>
-            <Button onClick={submit}>그룹 나누기</Button>
-            <hr />
+        <Stack sx={{ marginTop: 2 }}>
+            <Button variant="contained" color="success" onClick={submit}>그룹 나누기</Button>
             {
                 !data
                     ? <p>No MBTI data</p>
                     : <DataRender />
             }
-        </div>
+        </Stack>
     )
 }
 
 export default function Grouper() {
     return (
-        <div>
+        <Stack>
             <h1 className={styles.title}>
                 MBTI 그룹 나누기
             </h1>
@@ -81,8 +81,7 @@ export default function Grouper() {
                 가장 시너지가 높은 MBTI 그룹들로 나눠볼게요
             </p>
             <Selected />
-            <hr />
             <Response />
-        </div>
+        </Stack>
     )
 }

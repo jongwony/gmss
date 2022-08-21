@@ -6,6 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 
 import Grouper from "./grouper"
 import Recommend from "./recommend"
+import { Stack } from "@mui/material";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 62,
@@ -63,8 +64,6 @@ export default function Feature() {
 
     function SwitchFeature() {
         switch (state) {
-            case 1:
-                return <Grouper />
             case 0:
                 return <Recommend />
             default:
@@ -72,13 +71,13 @@ export default function Feature() {
         }
     }
     return (
-        <div>
+        <Stack sx={{ display: 'grid', flexGrow: 1, m: 2 }}>
             <FormControlLabel
                 control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
                 label={state ? "그룹 나누기" : "친구 찾기"}
                 onChange={handleChange}
             />
             {SwitchFeature()}
-        </div>
+        </Stack>
     )
 }

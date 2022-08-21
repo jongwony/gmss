@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import { Stack } from "@mui/material";
+import { Grid } from '@mui/material';
 import Button from '@mui/material/Button';
 
 import Selected from "./selected";
@@ -32,32 +34,31 @@ export function Response() {
 
     function DataRender() {
         return (
-            <div key={Math.random().toString()}>
-                {data.mbti.map((mbti: string) => <Button color="success" className={styles.mbtiSelected} variant="contained" key={Math.random().toString()}>{mbti}</Button>)}
-                <Button color="secondary" className={styles.mbtiSelected} variant="contained">
+            <Grid container sx={{ marginTop: 2 }} id="mbtiSelected">
+                {data.mbti.map((mbti: string) => <Button variant="contained" key={Math.random().toString()}>{mbti}</Button>)}
+                <Button color="secondary" variant="contained">
                     시너지 지수: {data.synergy}
                 </Button>
-            </div>
+            </Grid>
         )
     }
 
     if (isLoading) return <p>Loading...</p>
     return (
-        <div>
-            <Button onClick={submit}>추천 받기</Button>
-            <hr />
+        <Stack sx={{ marginTop: 2 }}>
+            <Button sx={{ flex: 1 }} variant="contained" color="success" onClick={submit}>추천 받기</Button>
             {
                 !data
                     ? <p>No MBTI data</p>
                     : <DataRender />
             }
-        </div>
+        </Stack>
     )
 }
 
 export default function Recommend() {
     return (
-        <div>
+        <Stack>
             <h1 className={styles.title}>
                 MBTI 친구 찾기
             </h1>
@@ -65,8 +66,7 @@ export default function Recommend() {
                 선택한 친구를 포함해 가장 시너지가 높은 MBTI를 찾아보세요
             </p>
             <Selected />
-            <hr />
             <Response />
-        </div>
+        </Stack>
     )
 }
