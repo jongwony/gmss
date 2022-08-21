@@ -1,4 +1,5 @@
 import React from "react"
+import { styled } from '@mui/material/styles';
 
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -24,7 +25,7 @@ function mbtiSubtract(privState: Selected[], selected: Selected) {
     return privState.filter(s => s.key !== selected.key)
 }
 
-export default function Selected() {
+export default function Selected(props: {submitTips: string;}) {
     const [list, setList] = React.useState([])
     function SchemaRender() {
         return (
@@ -39,11 +40,18 @@ export default function Selected() {
             </Grid>
         )
     }
-    function SelectedRender() {
+    const MaterialUIIntField = styled(TextField)(({ theme }) => ({
+        inputProps: { inputMode: 'numeric', pattern: '[0-9]*' },
+        "& .MuiOutlinedTextInput": {
+            color: theme.palette.mode === "dark" ? "white" : "black",
+            backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+        }
+    }))
+    function SelectedRender(props: {label: string;}) {
         if (list.length > 0) {
             return (
                 <Grid container id="mbtiSelected">
-                    <Grid xs={12} md={9} sx={{ marginTop: 2 }}>
+                    <Grid item={true} xs={12} md={9} sx={{ marginTop: 2 }}>
                         {
                             list.map(selected =>
                                 <Button variant="contained" key={selected.key} onClick={() => setList(privState => mbtiSubtract(privState, selected))}>{selected.mbti}</Button>
@@ -51,24 +59,26 @@ export default function Selected() {
                         }
 
                     </Grid>
-                    <Grid sx={{ marginTop: 2 }} Offset="auto">
-                        <TextField
+                    <Grid sx={{ marginTop: 2 }} offset="auto">
+                        <MaterialUIIntField
                             required
-                            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-                            sx={{ input: { color: "whitesmoke" }, label: { color: "whitesmoke" } }}
+                            variant="outlined"
                             id="personnel"
-                            label="몇 명이 필요하세요?"
+                            label={props.label}
                             defaultValue="2"
                         />
                     </Grid>
                 </Grid>
             )
         }
+        else {
+            return (<p>버튼을 눌러보세요</p>)
+        }
     }
     return (
         <Stack>
             <SchemaRender />
-            <SelectedRender />
+            <SelectedRender label={props.submitTips} />
         </Stack>
     )
 }

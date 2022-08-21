@@ -1,7 +1,10 @@
 import Head from "next/head";
 import React from "react";
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 
 import Feature from "components/mbti/category";
+import { darkTheme } from "styles/theme";
 
 export default function Home({ }) {
   return (
@@ -12,7 +15,10 @@ export default function Home({ }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Feature />
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <Feature />
+      </ThemeProvider>
 
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4530873656649886"
         crossOrigin="anonymous"></script>
