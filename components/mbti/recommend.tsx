@@ -40,7 +40,7 @@ export function Response() {
                         시너지 지수: {data.synergy}
                     </Button>
                 </Grid>
-                <small>시너지 지수는 2명일 경우 3이 가장 높습니다</small>
+                <small>시너지 지수는 제공해주신 MBTI와 합친 수치입니다. 2명일 경우 3이 가장 높습니다</small>
             </div>
         )
     }
