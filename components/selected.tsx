@@ -75,6 +75,12 @@ export default function Selected(props: { submitTips: string; submitText: string
         }
     }
 
+    function SelectedTips() {
+        if (list.length > 0) {
+            return <small>중복 추가할 수도 있고 추가한 버튼을 다시 눌러서 지울 수도 있어요.</small>
+        }
+    }
+
     function SubmitButton() {
         if (list.length > 0) {
             return (
@@ -89,6 +95,7 @@ export default function Selected(props: { submitTips: string; submitText: string
         <Stack sx={{ marginTop: 2 }}>
             <SchemaRender />
             <SelectedRender label={props.submitTips} />
+            <SelectedTips />
             <SubmitButton />
         </Stack>
     )
