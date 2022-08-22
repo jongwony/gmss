@@ -25,7 +25,7 @@ function mbtiSubtract(privState: Selected[], selected: Selected) {
     return privState.filter(s => s.key !== selected.key)
 }
 
-export default function Selected(props: { submitTips: string; submitText: string; submitCallback: () => any; }) {
+export default function Selected(props: { submitTips: string; submitText: string; submitCallback: () => any; isLoading: boolean }) {
     const [list, setList] = React.useState([])
     function SchemaRender() {
         return (
@@ -82,7 +82,7 @@ export default function Selected(props: { submitTips: string; submitText: string
     }
 
     function SubmitButton() {
-        if (list.length > 0) {
+        if (list.length > 0 && props.isLoading) {
             return (
                 <Button sx={{ marginTop: 2 }} variant="contained" color="success" onClick={props.submitCallback}>
                     {props.submitText}

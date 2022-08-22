@@ -55,7 +55,7 @@ export default function Recommend() {
     return (
         <Stack>
             <Header title="MBTI 친구 찾기" description={description} />
-            <Selected submitTips="몇 명이 더 필요한가요?" submitText="추천 받기" submitCallback={submit} />
+            <Selected submitTips="몇 명이 더 필요한가요?" submitText="추천 받기" submitCallback={submit} isLoading={!isLoading} />
             <DataRender />
         </Stack>
     )

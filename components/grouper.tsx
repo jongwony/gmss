@@ -67,7 +67,7 @@ export default function Grouper() {
     return (
         <Stack sx={{ marginTop: 2 }}>
             <Header title="MBTI 그룹 나누기" description={description} />
-            <Selected submitTips="한 팀의 인원은 몇 명인가요?" submitText="그룹 나누기" submitCallback={submit} />
+            <Selected submitTips="한 팀의 인원은 몇 명인가요?" submitText="그룹 나누기" submitCallback={submit} isLoading={!isLoading} />
             <DataRender />
         </Stack>
     )
