@@ -25,7 +25,7 @@ function mbtiSubtract(privState: Selected[], selected: Selected) {
     return privState.filter(s => s.key !== selected.key)
 }
 
-export default function Selected(props: {submitTips: string;}) {
+export default function Selected(props: { submitTips: string; }) {
     const [list, setList] = React.useState([])
     function SchemaRender() {
         return (
@@ -40,14 +40,13 @@ export default function Selected(props: {submitTips: string;}) {
             </Grid>
         )
     }
-    const MaterialUIIntField = styled(TextField)(({ theme }) => ({
-        inputProps: { inputMode: 'numeric', pattern: '[0-9]*' },
+    const MaterialUIField = styled(TextField)(({ theme }) => ({
         "& .MuiOutlinedTextInput": {
             color: theme.palette.mode === "dark" ? "white" : "black",
             backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
         }
     }))
-    function SelectedRender(props: {label: string;}) {
+    function SelectedRender(props: { label: string; }) {
         if (list.length > 0) {
             return (
                 <Grid container id="mbtiSelected">
@@ -57,11 +56,11 @@ export default function Selected(props: {submitTips: string;}) {
                                 <Button variant="contained" key={selected.key} onClick={() => setList(privState => mbtiSubtract(privState, selected))}>{selected.mbti}</Button>
                             )
                         }
-
                     </Grid>
                     <Grid sx={{ marginTop: 2 }} offset="auto">
-                        <MaterialUIIntField
+                        <MaterialUIField
                             required
+                            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                             variant="outlined"
                             id="personnel"
                             label={props.label}

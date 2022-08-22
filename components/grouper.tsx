@@ -59,7 +59,7 @@ export function Response() {
     if (isLoading) return <p>Loading...</p>
     return (
         <Stack sx={{ marginTop: 2 }}>
-            <Button variant="contained" color="success" onClick={submit}>그룹 나누기</Button>
+            <Button sx={{ flex: 1 }} variant="contained" color="success" onClick={submit}>그룹 나누기</Button>
             {
                 !data
                     ? <p>No MBTI data</p>
