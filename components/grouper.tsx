@@ -14,7 +14,7 @@ interface MBTI {
     synergy: number,
 }
 
-export function Response() {
+export default function Grouper() {
     const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(false)
 
@@ -36,48 +36,39 @@ export function Response() {
     }, [])
 
     function DataRender() {
-        return (
-            <div>
-                {
-                    data.map((mbti: MBTI) => {
-                        return (
-                            <Grid key={Math.random().toString()} sx={{ marginTop: 2 }}>
-                                {
-                                    mbti.mbti.map((x: string) => <Button key={Math.random().toString()} variant="contained">{x}</Button>)
-                                }
-                                <Button color="secondary" variant="contained">
-                                    시너지 지수: {mbti.synergy}
-                                </Button>
-                            </Grid>
-                        )
-                    })
-                }
-                <small>시너지 지수는 2명일 경우 3이 가장 높습니다</small>
-            </div>
-        )
+        if (isLoading) return <p>Loading...</p>
+        if (data) {
+            return (
+                <div>
+                    {
+                        data.map((mbti: MBTI) => {
+                            return (
+                                <Grid key={Math.random().toString()} sx={{ marginTop: 2 }}>
+                                    {
+                                        mbti.mbti.map((x: string) => <Button key={Math.random().toString()} variant="contained">{x}</Button>)
+                                    }
+                                    <Button color="secondary" variant="contained">
+                                        시너지 지수: {mbti.synergy}
+                                    </Button>
+                                </Grid>
+                            )
+                        })
+                    }
+                    <small>MBTI 궁합 표를 다차원 계산한 결과입니다. 두 명일 경우 3이 가장 높은 수치입니다.</small>
+                </div>
+            )
+        }
     }
 
-    if (isLoading) return <p>Loading...</p>
-    return (
-        <Stack sx={{ marginTop: 2 }}>
-            <Button sx={{ flex: 1 }} variant="contained" color="success" onClick={submit}>그룹 나누기</Button>
-            {
-                data && <DataRender />
-            }
-        </Stack>
-    )
-}
-
-export default function Grouper() {
     const description = `
     조직이나 모임에서 팀을 나눌 때 조별 과제에서 조를 짤 때 사용해보세요.
     MBTI 시너지가 가장 높은 팀으로 나누어 볼게요
     `
     return (
-        <Stack>
+        <Stack sx={{ marginTop: 2 }}>
             <Header title="MBTI 그룹 나누기" description={description} />
-            <Selected submitTips="한 팀의 인원은 몇 명인가요?" />
-            <Response />
+            <Selected submitTips="한 팀의 인원은 몇 명인가요?" submitText="그룹 나누기" submitCallback={submit} />
+            <DataRender />
         </Stack>
     )
 }

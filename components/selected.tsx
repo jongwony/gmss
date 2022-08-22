@@ -25,7 +25,7 @@ function mbtiSubtract(privState: Selected[], selected: Selected) {
     return privState.filter(s => s.key !== selected.key)
 }
 
-export default function Selected(props: { submitTips: string; }) {
+export default function Selected(props: { submitTips: string; submitText: string; submitCallback: () => any; }) {
     const [list, setList] = React.useState([])
     function SchemaRender() {
         return (
@@ -33,7 +33,7 @@ export default function Selected(props: { submitTips: string; }) {
                 {
                     schema.map(
                         (mbti) => (
-                            <Button key={mbti} variant="outlined" onClick={() => setList(privState => mbtiAppend(privState, mbti))}>{mbti}</Button>
+                            <Button key={mbti} variant="outlined" color="secondary" onClick={() => setList(privState => mbtiAppend(privState, mbti))}>{mbti}</Button>
                         )
                     )
                 }
@@ -74,10 +74,22 @@ export default function Selected(props: { submitTips: string; }) {
             return <p>MBTI 버튼을 눌러보세요</p>
         }
     }
+
+    function SubmitButton() {
+        if (list.length > 0) {
+            return (
+                <Button sx={{ marginTop: 2 }} variant="contained" color="success" onClick={props.submitCallback}>
+                    {props.submitText}
+                </Button>
+            )
+        }
+    }
+
     return (
-        <Stack>
+        <Stack sx={{ marginTop: 2 }}>
             <SchemaRender />
             <SelectedRender label={props.submitTips} />
+            <SubmitButton />
         </Stack>
     )
 }
