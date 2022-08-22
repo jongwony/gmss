@@ -18,12 +18,6 @@ export const darkTheme = createTheme({
   },
   components: {
     // Name of the component
-    MuiButtonBase: {
-      defaultProps: {
-        // The props to change the default for.
-        disableRipple: false, // No more ripple, on the whole application 💣!
-      },
-    },
     MuiCssBaseline: {
       styleOverrides: `
         .header {
@@ -33,6 +27,6 @@ export const darkTheme = createTheme({
     },
   },
   palette: {
-    mode: 'dark',
+    mode: "dark",
   },
 });

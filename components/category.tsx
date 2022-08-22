@@ -90,7 +90,6 @@ export default function Feature() {
                 label={state ? "그룹 나누기" : "친구 찾기"}
                 onChange={handleChange}
             />
-            <Header title={state ? "MBTI 그룹 나누기" : "MBTI 친구 찾기"} description={state ? "가장 시너지가 높은 MBTI 그룹들로 나눠볼게요" : "선택한 친구를 포함해 가장 시너지가 높은 MBTI를 찾아보세요"} />
             {SwitchFeature()}
         </Stack>
     )

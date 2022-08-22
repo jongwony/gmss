@@ -71,7 +71,7 @@ export default function Selected(props: { submitTips: string; }) {
             )
         }
         else {
-            return (<p>버튼을 눌러보세요</p>)
+            return <p>MBTI 버튼을 눌러보세요</p>
         }
     }
     return (

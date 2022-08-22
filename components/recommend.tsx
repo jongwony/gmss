@@ -5,6 +5,7 @@ import { Grid } from '@mui/material';
 import Button from '@mui/material/Button';
 
 import Selected from "./selected";
+import {Header} from "./category";
 import { postRecommend } from "./request";
 import { fetchFormData } from "./formSelector";
 
@@ -50,18 +51,21 @@ export function Response() {
         <Stack sx={{ marginTop: 2 }}>
             <Button sx={{ flex: 1 }} variant="contained" color="success" onClick={submit}>추천 받기</Button>
             {
-                !data
-                    ? <p>No MBTI data</p>
-                    : <DataRender />
+                data && <DataRender />
             }
         </Stack>
     )
 }
 
 export default function Recommend() {
+    const description = `
+    잘 맞는 사람과 팀을 만들고 싶으신가요?
+    시너지가 가장 높은 MBTI를 추천해 드릴게요
+    `
     return (
         <Stack>
-            <Selected submitTips="제시한 MBTI와 함께 추천될 MBTI 수" />
+            <Header title="MBTI 친구 찾기" description={description} />
+            <Selected submitTips="몇 명이 더 필요한가요?" />
             <Response />
         </Stack>
     )
