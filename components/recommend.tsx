@@ -50,7 +50,7 @@ export default function Recommend() {
 
     const description = `
     잘 맞는 사람과 팀을 만들고 싶으신가요?
-    시너지가 가장 높은 MBTI를 추천해 드릴게요
+    시너지가 가장 높은 MBTI를 추천해 드릴게요.
     `
     return (
         <Stack>

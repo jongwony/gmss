@@ -61,8 +61,8 @@ export default function Grouper() {
     }
 
     const description = `
-    조직이나 모임에서 팀을 나눌 때 조별 과제에서 조를 짤 때 사용해보세요.
-    MBTI 시너지가 가장 높은 팀으로 나누어 볼게요
+    조직이나 모임에서 팀을 나눌 때, 조별 과제에서 조를 짤 때 사용해보세요.
+    MBTI 시너지가 가장 높은 팀으로 나누어 볼게요.
     `
     return (
         <Stack sx={{ marginTop: 2 }}>
