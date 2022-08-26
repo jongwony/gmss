@@ -64,7 +64,7 @@ export default function Selected(props: { submitTips: string; submitText: string
                             variant="outlined"
                             id="personnel"
                             label={props.label}
-                            defaultValue="2"
+                            placeholder="숫자를 입력해 주세요."
                         />
                     </Grid>
                 </Grid>
