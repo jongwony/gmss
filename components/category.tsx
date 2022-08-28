@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import Grouper from "./grouper"
 import Recommend from "./recommend"
+import OurSynergy from "./synergy"
 import { Stack } from "@mui/material";
 
 export function Header(props: { title: string; description: string; }) {
@@ -22,31 +23,36 @@ export function Header(props: { title: string; description: string; }) {
 }
 
 export default function Feature() {
-    const [state, setState] = React.useState(1)
+    const [state, setState] = React.useState('0')
 
-    function handleChange() {
-        setState((state + 1) % 2)
+    function handleChange(event: React.MouseEvent<HTMLElement>, value: string) {
+        if (value !== null) {
+            setState(value)
+        }
     }
 
     function SwitchFeature() {
         switch (state) {
-            case 0:
+            case '1':
                 return <Recommend />
-            default:
+            case '2':
                 return <Grouper />
+            default:
+                return <OurSynergy />
         }
     }
     return (
         <Stack sx={{ display: 'grid', flexGrow: 1, m: 2 }}>
             <ToggleButtonGroup
                 color="primary"
-                value={state ? "그룹 나누기" : "친구 찾기"}
+                value={state}
                 exclusive
                 onChange={handleChange}
                 aria-label="Category"
             >
-                <ToggleButton value="그룹 나누기">그룹 나누기</ToggleButton>
-                <ToggleButton value="친구 찾기">친구 찾기</ToggleButton>
+                <ToggleButton value="0">우리 팀 점수는?</ToggleButton>
+                <ToggleButton value="1">그룹 나누기</ToggleButton>
+                <ToggleButton value="2">친구 찾기</ToggleButton>
             </ToggleButtonGroup>
             {SwitchFeature()}
         </Stack>

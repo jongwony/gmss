@@ -47,6 +47,22 @@ export default function Selected(props: { submitTips: string; submitText: string
             backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
         }
     }))
+    function PersonnelForm(props: { label: string; }) {
+        if (props.label.length > 0) {
+            return (
+                <Grid sx={{ marginTop: 2 }} offset="auto">
+                    <MaterialUIField
+                        required
+                        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                        variant="outlined"
+                        id="personnel"
+                        label={props.label}
+                        placeholder="숫자를 입력해 주세요."
+                    />
+                </Grid>
+            )
+        }
+    }
     function SelectedRender(props: { label: string; }) {
         if (list.length > 0) {
             return (
@@ -58,16 +74,7 @@ export default function Selected(props: { submitTips: string; submitText: string
                             )
                         }
                     </Grid>
-                    <Grid sx={{ marginTop: 2 }} offset="auto">
-                        <MaterialUIField
-                            required
-                            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-                            variant="outlined"
-                            id="personnel"
-                            label={props.label}
-                            placeholder="숫자를 입력해 주세요."
-                        />
-                    </Grid>
+                    <PersonnelForm label={props.label}/>
                 </Grid>
             )
         }

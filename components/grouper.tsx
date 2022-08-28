@@ -51,13 +51,13 @@ export default function Grouper() {
                                         mbti.mbti.map((x: string) => <Button key={Math.random().toString()} variant="contained">{x}</Button>)
                                     }
                                     <Button color="secondary" variant="contained">
-                                        시너지 지수: {mbti.synergy}
+                                        시너지 지수: {mbti.synergy}%
                                     </Button>
                                 </Grid>
                             )
                         })
                     }
-                    <Typography variant="caption">MBTI 궁합 표를 다차원 계산한 결과입니다. 두 명일 경우 3이 가장 높은 수치입니다.</Typography>
+                    <Typography variant="caption">MBTI 궁합 표를 다차원 계산하여 나온 최적의 결과입니다.</Typography>
                 </div>
             )
         } else if (data?.submitError) {

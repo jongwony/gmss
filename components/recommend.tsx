@@ -42,10 +42,10 @@ export default function Recommend() {
                     <Grid container sx={{ marginTop: 2 }} id="mbtiSelected">
                         {data.mbti.map((mbti: string) => <Button variant="contained" key={Math.random().toString()}>{mbti}</Button>)}
                         <Button color="secondary" variant="contained">
-                            시너지 지수: {data.synergy}
+                            시너지 지수: {data.synergy}%
                         </Button>
                     </Grid>
-                    <Typography variant="caption">시너지 지수는 선택했던 MBTI와 합친 수치입니다. MBTI 궁합 표를 다차원 계산한 결과입니다.</Typography>
+                    <Typography variant="caption">시너지 지수는 선택했던 MBTI와 함께 계산한 수치입니다. MBTI 궁합 표를 다차원 계산한 결과입니다.</Typography>
                 </div>
             )
         } else if (data?.submitError) {
