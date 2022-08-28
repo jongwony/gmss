@@ -34,9 +34,9 @@ export default function Feature() {
     function SwitchFeature() {
         switch (state) {
             case '1':
-                return <Recommend />
-            case '2':
                 return <Grouper />
+            case '2':
+                return <Recommend />
             default:
                 return <OurSynergy />
         }
