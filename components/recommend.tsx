@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Stack } from "@mui/material";
 import { Grid } from '@mui/material';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 import Selected from "./selected";
 import { Header } from "./category";
@@ -16,11 +17,13 @@ export default function Recommend() {
 
     async function submit() {
         const { mbti, personnel } = fetchFormData()
-        if (mbti.length > 0) {
+        if (mbti.length > 0 && personnel > 0) {
             setLoading(true)
             const response = await postRecommend(mbti, personnel)
             setData(response)
             setLoading(false)
+        } else {
+            setData({submitError: true})
         }
     }
 
@@ -33,7 +36,7 @@ export default function Recommend() {
 
     function DataRender() {
         if (isLoading) return <p>Loading...</p>
-        if (data) {
+        if (data?.mbti) {
             return (
                 <div>
                     <Grid container sx={{ marginTop: 2 }} id="mbtiSelected">
@@ -42,7 +45,13 @@ export default function Recommend() {
                             시너지 지수: {data.synergy}
                         </Button>
                     </Grid>
-                    <small>시너지 지수는 선택했던 MBTI와 합친 수치입니다. MBTI 궁합 표를 다차원 계산한 결과입니다.</small>
+                    <Typography variant="caption">시너지 지수는 선택했던 MBTI와 합친 수치입니다. MBTI 궁합 표를 다차원 계산한 결과입니다.</Typography>
+                </div>
+            )
+        } else if (data?.submitError) {
+            return (
+                <div>
+                    <Typography variant="caption" color="error.light">최소 1명 이상의 MBTI와 1명 이상의 추천 받을 인원을 지정해 주세요</Typography>
                 </div>
             )
         }
@@ -53,7 +62,7 @@ export default function Recommend() {
     시너지가 가장 높은 MBTI를 추천해 드릴게요.
     `
     return (
-        <Stack>
+        <Stack sx={{ marginTop: 2 }}>
             <Header title="MBTI 친구 찾기" description={description} />
             <Selected submitTips="몇 명이 더 필요한가요?" submitText="추천 받기" submitCallback={submit} isLoading={!isLoading} />
             <DataRender />

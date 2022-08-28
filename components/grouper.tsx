@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { Grid } from "@mui/material";
 import { Stack } from "@mui/material";
 
@@ -20,11 +21,13 @@ export default function Grouper() {
 
     async function submit() {
         const { mbti, personnel } = fetchFormData()
-        if (mbti.length > 0) {
+        if (mbti.length > 1 && personnel > 1) {
             setLoading(true)
             const response = await postGrouper(mbti, personnel)
             setData(response)
             setLoading(false)
+        } else {
+            setData({submitError: true})
         }
     }
 
@@ -37,7 +40,7 @@ export default function Grouper() {
 
     function DataRender() {
         if (isLoading) return <p>Loading...</p>
-        if (data) {
+        if (data instanceof Array) {
             return (
                 <div>
                     {
@@ -54,7 +57,13 @@ export default function Grouper() {
                             )
                         })
                     }
-                    <small>MBTI 궁합 표를 다차원 계산한 결과입니다. 두 명일 경우 3이 가장 높은 수치입니다.</small>
+                    <Typography variant="caption">MBTI 궁합 표를 다차원 계산한 결과입니다. 두 명일 경우 3이 가장 높은 수치입니다.</Typography>
+                </div>
+            )
+        } else if (data?.submitError) {
+            return (
+                <div>
+                    <Typography variant="caption" color="error.light">최소 2명 이상의 MBTI와 한 팀이 2명 이상으로 구성되도록 지정해 주세요</Typography>
                 </div>
             )
         }

@@ -2,6 +2,7 @@ import React from "react"
 import { styled } from '@mui/material/styles';
 
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
 import { schema } from "./schema";
@@ -71,13 +72,13 @@ export default function Selected(props: { submitTips: string; submitText: string
             )
         }
         else {
-            return <p>☝️ MBTI 버튼을 눌러보세요</p>
+            return <Typography variant="subtitle1">☝️ MBTI 버튼을 눌러보세요</Typography>
         }
     }
 
     function SelectedTips() {
         if (list.length > 0) {
-            return <small>중복 추가할 수도 있고 추가한 버튼을 다시 눌러서 지울 수도 있어요.</small>
+            return <Typography variant="caption">여러 번 눌러 중복 추가할 수도 있고 추가한 버튼을 다시 눌러서 지울 수도 있어요.</Typography>
         }
     }
 
