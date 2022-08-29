@@ -42,7 +42,7 @@ export default function Recommend() {
                     <Typography variant="caption" color="error.light">최소 2명 이상의 MBTI를 지정해 주세요</Typography>
                 </div>
             )
-        } else if (data) {
+        } else {
             return (
                 <div>
                     <Grid container sx={{ marginTop: 2 }} id="mbtiSelected">

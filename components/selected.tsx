@@ -28,11 +28,12 @@ function mbtiSubtract(privState: Selected[], selected: Selected) {
 
 export default function Selected(props: { submitTips: string; submitText: string; submitCallback: () => any; isLoading: boolean }) {
     const [list, setList] = React.useState([])
+    const sortedSchema = schema.sort()
     function SchemaRender() {
         return (
             <Grid container>
                 {
-                    schema.map(
+                    sortedSchema.map(
                         (mbti) => (
                             <Button key={mbti} variant="outlined" color="secondary" onClick={() => setList(privState => mbtiAppend(privState, mbti))}>{mbti}</Button>
                         )
