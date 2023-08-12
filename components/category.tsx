@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import Grouper from "./grouper"
 import Recommend from "./recommend"
-import OurSynergy from "./synergy"
+import Team from "./team"
 import { Stack } from "@mui/material";
 
 export function Header(props: { title: string; description: string; }) {
@@ -38,7 +38,7 @@ export default function Feature() {
             case '2':
                 return <Recommend />
             default:
-                return <OurSynergy />
+                return <Team />
         }
     }
     return (

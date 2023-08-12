@@ -9,6 +9,7 @@ import Selected from "./selected";
 import { Header } from "./category";
 import { postGrouper } from "./request";
 import { fetchFormData } from "./formSelector";
+import { SynergyRender } from "./utils/synergyIndex";
 
 interface MBTI {
     mbti: string[],
@@ -50,14 +51,19 @@ export default function Grouper() {
                                     {
                                         mbti.mbti.map((x: string) => <Button key={Math.random().toString()} variant="contained">{x}</Button>)
                                     }
-                                    <Button color="secondary" variant="contained">
-                                        시너지 지수: {mbti.synergy}%
-                                    </Button>
+                                    <SynergyRender percent={mbti.synergy}></SynergyRender>
                                 </Grid>
                             )
                         })
                     }
-                    <Typography variant="caption">MBTI 궁합 표를 다차원 계산하여 나온 최적의 결과입니다.</Typography>
+                    <Typography variant="caption">
+                        MBTI 궁합 표를 다차원 계산하여 나온 최적의 결과입니다. <br />
+                        😭: 0 ~ 12% <br />
+                        😢: 13 ~ 37% <br />
+                        😐: 38 ~ 62% <br />
+                        🙂: 63 ~ 87% <br />
+                        😍: 88 ~ 100%
+                    </Typography>
                 </div>
             )
         } else if (data?.submitError) {

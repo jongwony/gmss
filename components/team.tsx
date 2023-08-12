@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 
 import { Stack } from "@mui/material";
 import { Grid } from '@mui/material';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import Selected from "./selected";
 import { Header } from "./category";
-import { postSynergy } from "./request";
+import { postTeam } from "./request";
 import { fetchOnlySelectedData } from "./formSelector";
+import { SynergyRender, SummaryRender } from "./utils/synergyIndex";
 
 
-export default function Recommend() {
+export default function Team() {
     const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(false)
 
@@ -19,7 +19,7 @@ export default function Recommend() {
         const { mbti } = fetchOnlySelectedData()
         if (mbti.length > 1) {
             setLoading(true)
-            const response = await postSynergy(mbti)
+            const response = await postTeam(mbti)
             setData(response)
             setLoading(false)
         } else {
@@ -42,15 +42,23 @@ export default function Recommend() {
                     <Typography variant="caption" color="error.light">최소 2명 이상의 MBTI를 지정해 주세요</Typography>
                 </div>
             )
-        } else {
+        } else if (data?.synergy && data?.summary) {
             return (
                 <div>
+                    <SummaryRender summary={data.summary}></SummaryRender>
+
                     <Grid container sx={{ marginTop: 2 }} id="mbtiSelected">
-                        <Button color="secondary" variant="contained">
-                            시너지 지수: {data}%
-                        </Button>
+                        <SynergyRender percent={data.synergy}></SynergyRender>
                     </Grid>
-                    <Typography variant="caption">시너지 지수는 선택했던 MBTI의 모든 경우의 수를 계산한 수치입니다. MBTI 궁합 표를 다차원 계산한 결과입니다.</Typography>
+
+                    <Typography variant="caption">
+                        시너지 지수는 선택했던 MBTI의 모든 경우의 수를 계산한 수치입니다. MBTI 궁합 표를 다차원 계산한 결과입니다.<br />
+                        😭: 0 ~ 12% <br />
+                        😢: 13 ~ 37% <br />
+                        😐: 38 ~ 62% <br />
+                        🙂: 63 ~ 87% <br />
+                        😍: 88 ~ 100%
+                    </Typography>
                 </div>
             )
         }
