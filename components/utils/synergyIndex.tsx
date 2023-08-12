@@ -35,7 +35,7 @@ export function SynergyRender(props: {percent: number}) {
 export function SummaryRender(props: { summary: { [key: string]: number } }) {
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table aria-label="simple table">
                 <TableBody>
                     <TableRow
                         key="EI"
