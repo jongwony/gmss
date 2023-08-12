@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import Selected from "./selected";
-import { Header } from "./category";
 import { postRecommend } from "./request";
 import { fetchFormData } from "./formSelector";
 import { SynergyRender } from "./utils/synergyIndex";
@@ -63,13 +62,15 @@ export default function Recommend() {
         }
     }
 
+    const title = "MBTI 친구 찾기"
     const description = `
     잘 맞는 사람과 팀을 만들고 싶으신가요?
     시너지가 가장 높은 MBTI를 추천해 드릴게요.
     `
     return (
         <Stack sx={{ marginTop: 2 }}>
-            <Header title="MBTI 친구 찾기" description={description} />
+            <h1>{title}</h1>
+            <Typography variant="subtitle1">{description}</Typography>
             <Selected submitTips="몇 명이 더 필요한가요?" submitText="추천 받기" submitCallback={submit} isLoading={!isLoading} />
             <DataRender />
         </Stack>

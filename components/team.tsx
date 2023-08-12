@@ -5,7 +5,6 @@ import { Grid } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 import Selected from "./selected";
-import { Header } from "./category";
 import { postTeam } from "./request";
 import { fetchOnlySelectedData } from "./formSelector";
 import { SynergyRender, SummaryRender } from "./utils/synergyIndex";
@@ -64,13 +63,15 @@ export default function Team() {
         }
     }
 
+    const title = "우리 팀 MBTI 궁합 점수"
     const description = `
     우리 팀의 MBTI 는 얼마나 잘 맞을까요?
     팀에 속한 사람들의 MBTI를 눌러보세요.
     `
     return (
         <Stack sx={{ marginTop: 2 }}>
-            <Header title="우리 팀 MBTI 궁합 점수는?" description={description} />
+            <h1>{title}</h1>
+            <Typography variant="subtitle1">{description}</Typography>
             <Selected submitTips="" submitText="시너지 점수 보기" submitCallback={submit} isLoading={!isLoading} />
             <DataRender />
         </Stack>

@@ -1,19 +1,19 @@
 import type { ReactElement } from 'react'
-import Layout from '../components/layout'
 import type { NextPageWithLayout } from './_app'
 
-import Team from 'components/team'
+import Layout from 'components/layout'
+import Grouper from 'components/grouper'
 
 const Page: NextPageWithLayout = () => {
-  return Team()
+    return Grouper()
 }
 
 Page.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout>
-      {page}
-    </Layout>
-  )
+    return (
+        <Layout>
+            {page}
+        </Layout>
+    )
 }
 
 export default Page
