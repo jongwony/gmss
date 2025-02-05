@@ -41,7 +41,7 @@ export default function Team() {
                     <Typography variant="caption" color="error.light">최소 2명 이상의 MBTI를 지정해 주세요</Typography>
                 </div>
             )
-        } else if (data?.synergy && data?.summary) {
+        } else if (data?.synergy >= 0 && data?.summary) {
             return (
                 <div>
                     <SummaryRender summary={data.summary}></SummaryRender>
