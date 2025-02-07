@@ -51,7 +51,7 @@ export default function Selected(props: { submitTips: string; submitText: string
     function PersonnelForm(props: { label: string; }) {
         if (props.label.length > 0) {
             return (
-                <Grid sx={{ marginTop: 2 }} offset="auto">
+                <Grid sx={{ marginTop: 2 }}>
                     <MaterialUIField
                         required
                         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
